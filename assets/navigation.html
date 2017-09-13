@@ -1,0 +1,74 @@
+<!doctype html>
+<!--[if IE 8 ]><html class="ie8" lang="zh-cn"><![endif]-->
+<!--[if IE 9 ]><html class="ie9" lang="zh-cn"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html class="" lang="zh-cn"><!--<![endif]-->
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <meta charset="utf-8"/>
+    <title>Navigation</title>
+    <link rel="stylesheet" href="css/nav.css">
+</head>
+<body>
+  <div class="nav-row nav-row-title">
+    <div class="nav-col"></div>
+    <div class="nav-col">微信好友</div>
+    <div class="nav-col">消息条目</div>
+</div>
+
+  <a class="nav-row nav-trow nav--deleted" href="../天音丸纸/天音丸纸的微信聊天记录.html" target="showframe">
+    <div class="nav-col"></div>
+    <div class="nav-col">
+        <div class="nav-layout inline-block-center">
+            <img class="nav-layout__item" data-src="http://wx.qlogo.cn/mmhead/ver_1/wKndRhhGwoFhzXIicjEWMhH8JLot3s3bNMGzsquN36GFwyqNFHPb0A8ic0icBLDYrPIwibNL6IVrLj5mibRy2MogibJ1OAXXsH1y6c5LK6utQ2Qeg/0"/>
+            <span class="nav-layout__item">天音丸纸</span>
+        </div>
+    </div>
+    <div class="nav-col">
+        <span><span class="nav-strong">22054</span></span>
+    </div>
+</a>
+
+</body>
+
+<script src="js/page.js"></script>
+<script>
+    function addEventListener(el, eventName, handler) {
+        if (el.addEventListener) {
+            el.addEventListener(eventName, handler);
+        } else {
+            el.attachEvent('on' + eventName, function(){
+                handler.call(el);
+            });
+        }
+    }
+    var navTrowDoms = document.querySelectorAll(".nav-trow");
+    var navTrows = Array.prototype.slice.call(navTrowDoms);
+    addClass(navTrows[0], 'selected');
+    function removeClass(el, className) {
+        if (el.classList) {
+            el.classList.remove(className);
+        } else {
+            el.className = el.className.replace(new RegExp('(^|\b)' + className.split(' ').join('|') + '(\b|$)', 'gi'), ' ');
+        }
+    }
+    function changeSelected(index) {
+        for (var j = 0; j < navTrows.length; j++) {
+            removeClass(navTrows[j], 'selected');
+        }
+        addClass(navTrows[index], 'selected');
+    }
+    for (var i = 0; i < navTrows.length; i++) {
+        (function(index) {
+            if (index % 2 ==0) {
+                addClass(navTrows[index], "even");
+            } else { 
+                addClass(navTrows[index], "odd")
+            }
+            addEventListener(navTrows[index], 'click', function() { 
+                changeSelected(index); 
+            });
+        })(i);
+    }
+    addError(".nav-trow img");
+</script>
+</html>
